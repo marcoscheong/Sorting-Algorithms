@@ -1,6 +1,4 @@
 def quicksort(lst):
-
-# def quicksort(lst):
     # Handle the base case.
     if len(lst) <= 1:
         return lst
@@ -25,4 +23,4 @@ def quicksort(lst):
     return left + [pivot] + right
 
 num_list = [6, 7, 3, 4, 2, 1, 5]
-quicksort(num_list)
+print(quicksort(num_list))

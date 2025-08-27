@@ -7,7 +7,7 @@ def merge_sort(arr):
     #Split the array into left and right subarrays
     mid = len(arr) // 2
     left = arr[:mid]
-    right = arr[mid + 1:]
+    right = arr[mid:]    #WHY DOES PSEUDOCODE SAY MID + 1
     # print(left,right) 
     
     #Recursively sort each subarray.
@@ -21,25 +21,23 @@ def merge_sort(arr):
     return sorted_array
 
 def merge(left: list, right: list):
-    sorted_arr = []
-    if left[0] > right[0]:
-        sorted_arr.append(right)
-        right.pop(0)
-    else:
-        sorted_arr.append(left)
-        left.pop(0)
-    return left + right + sorted_arr
-        
+    p1 = 0 #pointer 1 (left)
+    p2 = 0 #pointer 2 (right)
+    sorted_array = []
 
+    while p1 < len(left) and p2 < len(right):
 
+        if left[p1] <= right[p2]:
+            sorted_array.append(left[p1])
+            p1 += 1
+
+        else:
+            sorted_array.append(right[p2])
+            p2 += 1
     
-
-    #Compare the first elements of the left and right subarrays (subarrays are assumed to be sorted)
-
-    #Add the smaller of the two elements to another array, and repeat for remaining elements
-
-num_list = [6, 7, 3, 4, 2, 1, 5]
-
-print(merge_sort(num_list))
+    return sorted_array
 
 
+
+
+print(merge_sort([13,244,24,89]))
