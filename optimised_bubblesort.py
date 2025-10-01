@@ -29,5 +29,6 @@ def bubblesort(arr: list) -> list:
     
     return arr
 
+print(bubblesort([3,2,1]))
 
     

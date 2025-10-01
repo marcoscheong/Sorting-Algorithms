@@ -1,43 +1,32 @@
-def merge_sort(arr):
+def mergesort(arr: list):
+    """sorts an array using merge sort algorithm"""
 
-    #Handle the base case.
+    #handle base case
+
     if len(arr) <= 1:
         return arr
 
-    #Split the array into left and right subarrays
     mid = len(arr) // 2
     left = arr[:mid]
-    right = arr[mid:]    #WHY DOES PSEUDOCODE SAY MID + 1
-    # print(left,right) 
+    right = arr[mid:]
+
+    left_arr = mergesort(left)
+    right_arr = mergesort(right)
+
+    sorted_arr = merge(left_arr, right_arr)
+
+    return sorted_arr
+
+def merge(left_arr, right_arr):
+    sorted_arr = []
     
-    #Recursively sort each subarray.
-    left = merge_sort(left)
-    right = merge_sort(right)
-    # print(left,right)
-    
-    # Merge the subarrays into a sorted array.
-    sorted_array = merge(left, right)
-
-    return sorted_array
-
-def merge(left: list, right: list):
-    p1 = 0 #pointer 1 (left)
-    p2 = 0 #pointer 2 (right)
-    sorted_array = []
-
-    while p1 < len(left) and p2 < len(right):
-
-        if left[p1] <= right[p2]:
-            sorted_array.append(left[p1])
-            p1 += 1
-
+    while len(left_arr) > 0 and len(right_arr) > 0:
+        if left_arr[0] < right_arr[0]:
+            sorted_arr.append(left_arr.pop(0))
         else:
-            sorted_array.append(right[p2])
-            p2 += 1
-    
-    return sorted_array
+            sorted_arr.append(right_arr.pop(0))
 
+    return sorted_arr + left_arr + right_arr
 
+print(mergesort([3,2,1]))
 
-
-print(merge_sort([13,244,24,89]))
